@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: api-gateway
+
+server:  port: 5000
+  
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${EUREKA_HOST:127.0.0.1}:8761/eureka
+
+
+auth-service:
+  url: http://${AUTH_HOST:127.0.0.1}:${AUTH_PORT:8084}
+
+zuul:
+  routes:
+    auth-ms:
+      url: http://${AUTH_HOST:127.0.0.1}:${AUTH_PORT:8084}
+    account-service:
+      url: http://${ACCOUNT_HOST:127.0.0.1}:${ACCOUNT_PORT:8081}
+    customer-service:
+      url: http://${CUSTOMER_HOST:127.0.0.1}:${CUSTOMER_PORT:8080}
+    transaction-service:
+      url: http://${TRANSACTION_HOST:127.0.0.1}:${TRANSACTION_PORT:8500}
+    rules:
+      url: http://${RULES_HOST:127.0.0.1}:${RULES_PORT:8090}
+
+ribbon:
+  eureka:
+    enabled: false

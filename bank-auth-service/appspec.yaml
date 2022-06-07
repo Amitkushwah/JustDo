@@ -1,0 +1,10 @@
+version: 1.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:us-east-2:234825976347:task-definition/pod2-bank:1"
+        LoadBalancerInfo:
+          ContainerName: "auth-service"
+          ContainerPort: "8084"
+        PlatformVersion: "LATEST"
